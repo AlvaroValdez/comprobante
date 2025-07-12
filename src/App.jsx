@@ -244,8 +244,11 @@ export default function App() {
                     <tr>
                       <th>Fecha</th>
                       <th>Beneficiario</th>
+                      <th>Cedula</th>
                       <th>Banco</th>
+                      <th>#Cuenta</th>
                       <th>Monto (CLP)</th>
+                      <th>Monto Final</th>
                       <th>Destino</th>
                     </tr>
                   </thead>
@@ -254,8 +257,11 @@ export default function App() {
                       <tr key={item.id}>
                         <td style={{fontSize:"0.9em"}}>{item.fecha ? new Date(item.fecha).toLocaleString() : ""}</td>
                         <td>{item.nombre}</td>
+                        <td>{item.cedula}</td>
                         <td>{item.banco}</td>
+                        <td>{item.numeroCuenta}</td>
                         <td>${parseFloat(item.montoCLP).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</td>
+                        <td>{item.montoFinal}</td>
                         <td>{item.monedaDestino}</td>
                       </tr>
                     ))}
