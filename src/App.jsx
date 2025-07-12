@@ -33,6 +33,21 @@ export default function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Ejemplo de cómo guardar desde React (usa tu URL de Railway)
+    fetch('comprobante-backend-production.up.railway.app/envios', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...form }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log('Registro guardado:', data);
+      })
+      .catch(err => {
+        console.error('Error al guardar en la base de datos:', err);
+      });
+
     setShowComprobante(true);
   };
 
