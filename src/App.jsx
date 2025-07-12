@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "./assets/ISO_Mesa de trabajo 1.png";
 
-const BACKEND_URL = "comprobante-backend-production.up.railway.app"; // Cambia esto por tu URL real
+const BACKEND_URL = "https://comprobante-backend-production.up.railway.app"; // Cambia esto por tu URL real
 
 export default function App() {
   const [form, setForm] = useState({
