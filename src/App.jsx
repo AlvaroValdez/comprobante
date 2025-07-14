@@ -231,7 +231,6 @@ export default function App() {
         </div>
 
         {/* Columna tabla de últimos envíos */}
-        {/* Columna tabla de últimos envíos */}
         <div className="col-md-6">
           <div className="p-3 border rounded shadow" style={{ minHeight: 600, borderColor: "#ee8888" }}>
             <h5 className="mb-3">Últimos 10 comprobantes</h5>
@@ -260,19 +259,13 @@ export default function App() {
                         <td>{item.nombre}</td>
                         <td>{item.banco}</td>
                         <td>
-                          {item.montoCLP !== undefined && item.montoCLP !== null
-                            ? "$" + parseFloat(item.montoCLP).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-                            : ""}
+                          {item.montoCLP}
                         </td>
                         <td>
-                          {item.tipoCambio !== undefined && item.tipoCambio !== null
-                            ? parseFloat(item.tipoCambio).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })
-                            : ""}
+                          {item.tipoCambio}
                         </td>
                         <td>
-                          {item.montoFinal !== undefined && item.montoFinal !== null
-                            ? parseFloat(item.montoFinal).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-                            : ""}
+                          {item.montoFinal}
                         </td>
                         <td>{item.monedaDestino}</td>
                       </tr>
