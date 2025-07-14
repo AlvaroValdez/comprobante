@@ -259,15 +259,15 @@ export default function App() {
                         <td>{item.nombre}</td>
                         <td>{item.banco}</td>
                         <td>
-                          {item.montoCLP}
+                          {item.montoclp}
                         </td>
                         <td>
-                          {item.tipoCambio}
+                          {item.tipocambio}
                         </td>
                         <td>
-                          {item.montoFinal}
+                          {item.montofinal}
                         </td>
-                        <td>{item.monedaDestino}</td>
+                        <td>{item.monedadestino}</td>
                       </tr>
                     ))}
                   </tbody>
