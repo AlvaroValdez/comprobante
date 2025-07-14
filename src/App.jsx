@@ -80,7 +80,16 @@ export default function App() {
 
   return (
     <div className="container my-5">
-      <h2 className="mb-4 text-center">Generar Comprobante de Envío</h2>
+      <div className="text-center mb-3">
+    <a href="/" style={{textDecoration: "none"}}>
+      <img
+        src={logo}
+        alt="AV Finance Logo"
+        style={{ maxHeight: 56, marginBottom: 8 }}
+      />
+    </a>
+  </div>
+  <h2 className="mb-4 text-center">Generar Comprobante de Envío</h2>
       <div className="row">
         {/* Columna formulario */}
         <div className="col-md-6">
