@@ -12,6 +12,7 @@ export default function App() {
     numeroCuenta: "",
     tipoCambio: "",
     montoCLP: "",
+    montoFinal: "",
     monedaDestino: "COP"
   });
   const [showComprobante, setShowComprobante] = useState(false);
@@ -84,7 +85,7 @@ export default function App() {
         {/* Columna formulario */}
         <div className="col-md-6">
           {!showComprobante ? (
-            <form className="p-4 border rounded shadow mx-auto" style={{maxWidth: 500}} onSubmit={handleSubmit}>
+            <form className="p-4 border rounded shadow mx-auto" style={{ maxWidth: 500 }} onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label className="form-label">Nombre completo beneficiario</label>
                 <input
@@ -188,7 +189,7 @@ export default function App() {
               {/* Previsualización del cálculo */}
               {form.montoCLP && form.tipoCambio && !isNaN(montoFinal) && (
                 <div className="alert alert-info py-2">
-                  Monto a recibir aprox: <strong>{simboloDestino} {montoFinal.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</strong>
+                  Monto a recibir aprox: <strong>{simboloDestino} {montoFinal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
                 </div>
               )}
               <button type="submit" className="btn btn-primary w-100">
@@ -196,7 +197,7 @@ export default function App() {
               </button>
             </form>
           ) : (
-            <div className="p-4 border rounded shadow mx-auto" style={{maxWidth: 500, background:"white"}}>
+            <div className="p-4 border rounded shadow mx-auto" style={{ maxWidth: 500, background: "white" }}>
               <div className="text-center mb-4">
                 {/* Logo en la parte superior */}
                 <img
@@ -214,9 +215,9 @@ export default function App() {
                 <p><strong>Banco Destino:</strong> {form.banco}</p>
                 <p><strong>Tipo de Cuenta:</strong> {form.tipoCuenta}</p>
                 <p><strong>Número de Cuenta:</strong> {form.numeroCuenta}</p>
-                <p><strong>Monto enviado (CLP):</strong> ${parseFloat(form.montoCLP).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</p>
-                <p><strong>Tipo de cambio aplicado:</strong> {parseFloat(form.tipoCambio).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:4})}</p>
-                <p><strong>Monto a recibir ({form.monedaDestino}):</strong> {simboloDestino} {parseFloat(montoFinal).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</p>
+                <p><strong>Monto enviado (CLP):</strong> ${parseFloat(form.montoCLP).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                <p><strong>Tipo de cambio aplicado:</strong> {parseFloat(form.tipoCambio).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })}</p>
+                <p><strong>Monto a recibir ({form.monedaDestino}):</strong> {simboloDestino} {parseFloat(montoFinal).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
               </div>
               <hr />
               <div className="d-flex justify-content-between">
@@ -229,6 +230,7 @@ export default function App() {
           )}
         </div>
 
+        {/* Columna tabla de últimos envíos */}
         {/* Columna tabla de últimos envíos */}
         <div className="col-md-6">
           <div className="p-3 border rounded shadow" style={{ minHeight: 600, borderColor: "#ee8888" }}>
@@ -244,24 +246,34 @@ export default function App() {
                     <tr>
                       <th>Fecha</th>
                       <th>Beneficiario</th>
-                      <th>Cedula</th>
                       <th>Banco</th>
-                      <th>#Cuenta</th>
                       <th>Monto (CLP)</th>
-                      <th>Monto Final</th>
-                      <th>Destino</th>
+                      <th>Tipo cambio</th>
+                      <th>Final</th>
+                      <th>Moneda</th>
                     </tr>
                   </thead>
                   <tbody>
                     {ultimosEnvios.map((item) => (
                       <tr key={item.id}>
-                        <td style={{fontSize:"0.9em"}}>{item.fecha ? new Date(item.fecha).toLocaleString() : ""}</td>
+                        <td style={{ fontSize: "0.9em" }}>{item.fecha ? new Date(item.fecha).toLocaleString() : ""}</td>
                         <td>{item.nombre}</td>
-                        <td>{item.cedula}</td>
                         <td>{item.banco}</td>
-                        <td>{item.numeroCuenta}</td>
-                        <td>${parseFloat(item.montoCLP).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</td>
-                        <td>{item.montoFinal}</td>
+                        <td>
+                          {item.montoCLP !== undefined && item.montoCLP !== null
+                            ? "$" + parseFloat(item.montoCLP).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                            : ""}
+                        </td>
+                        <td>
+                          {item.tipoCambio !== undefined && item.tipoCambio !== null
+                            ? parseFloat(item.tipoCambio).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 })
+                            : ""}
+                        </td>
+                        <td>
+                          {item.montoFinal !== undefined && item.montoFinal !== null
+                            ? parseFloat(item.montoFinal).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                            : ""}
+                        </td>
                         <td>{item.monedaDestino}</td>
                       </tr>
                     ))}
