@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "./assets/ISO_Mesa de trabajo 1.png";
 
-const BACKEND_URL = "https://comprobante-backend-production.up.railway.app"; // Cambia esto por tu URL real
+const BACKEND_URL = "https://comprobante-backend-production.up.railway.app";
 
 export default function App() {
   const [form, setForm] = useState({
@@ -73,7 +73,7 @@ export default function App() {
 
   const montoFinal =
     form.montoCLP && form.tipoCambio && !isNaN(form.montoCLP) && !isNaN(form.tipoCambio)
-      ? (parseFloat(form.montoCLP) / parseFloat(form.tipoCambio))
+      ? (parseFloat(form.montoCLP) * parseFloat(form.tipoCambio))
       : "";
 
   const simboloDestino = monedas.find(m => m.value === form.monedaDestino)?.simbolo || "";
